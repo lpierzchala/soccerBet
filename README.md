@@ -1,18 +1,18 @@
-##Soccer Bet - Backend
+## Soccer Bet - Backend
 
-Features: 
+#### Features: 
 * user auth 
 * adding matches
 * adding match results 
 * results verification (To Do)
 
-##### Tech stack:
+#### Tech stack:
 * Node.js
 * Express.js - routings
 * Passport.js - for authentication
 * MongoDB
 
-To do:
+#### To do:
 * add Swagger support
 * add GraphQL to project
 * add results verification
@@ -21,6 +21,6 @@ To do:
 
 
 
-####How to run project:
+#### How to run project:
 1. ``npm install``
 2. ``npm run start``
