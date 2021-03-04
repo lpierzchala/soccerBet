@@ -32,7 +32,7 @@ UserSchema.methods.generateJWT = function () {
     {
       email: this.email,
       id: this._id,
-      exp: Math.floor(Date.now() / 1000) + 30
+      exp: Math.floor(Date.now() / 1000) + 3600
     },
     'secret'
   );

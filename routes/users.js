@@ -2,11 +2,17 @@ const express = require('express');
 const mongoose = require('mongoose');
 const { userRegisterVerification, userLoginVerification, auth } = require('../middlewares');
 
-const router = express.Router();
 const User = mongoose.model('User');
 const { registrationController, loginController } = require('../controllers');
 
-/* GET users listing. */
+/**
+ * Express router to mount user related functions on.
+ */
+const router = express.Router();
+
+/**
+ * Route serving user details.
+ */
 router.get('/current', auth, (req, res) => {
   const { userId } = req;
 
@@ -18,8 +24,14 @@ router.get('/current', auth, (req, res) => {
   });
 });
 
+/**
+ * Route for user login
+ */
 router.post('/login', userLoginVerification, loginController);
 
+/**
+ * Route for user registration.
+ */
 router.post('/register', userRegisterVerification, registrationController);
 
 module.exports = router;

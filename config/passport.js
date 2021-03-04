@@ -16,7 +16,7 @@ passport.use(
           return done(err);
         }
         if (!user) {
-          return done(null, false, { message: 'Incorrect email.' });
+          return done(null, false, { message: 'User with given email not found' });
         }
         if (!user.validatePassword(password)) {
           return done(null, false, { message: 'Incorrect password.' });

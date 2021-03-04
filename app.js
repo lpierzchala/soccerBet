@@ -6,6 +6,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const helmet = require('helmet');
 const logger = require('morgan');
+const cors = require('cors');
 
 const app = express();
 
@@ -21,20 +22,29 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(helmet());
 app.use(passport.initialize());
+app.use(cors())
 
 // Configure Mongoose
-mongoose.connect('mongodb://127.0.0.1:27017/exa3');
+mongoose.connect('mongodb://127.0.0.1:27017/exa3',{
+  useCreateIndex: true,
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
 mongoose.set('debug', true);
 // Init model and passport
 require('./models/user.model');
+require('./models/types.model');
+require('./models/match.model');
 require('./config/passport');
 
 // Routes
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
+const matchesRouter = require('./routes/matches');
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/matches', matchesRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

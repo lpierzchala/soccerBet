@@ -1,5 +1,8 @@
 const jwt = require('jsonwebtoken');
 
+/**
+ * Extracts JWT token from request header
+ */
 const getTokenFromHeaders = (req) => {
   const {
     headers: { authorization }
@@ -8,6 +11,9 @@ const getTokenFromHeaders = (req) => {
   return null;
 };
 
+/**
+ * Verify if JWT token is valid
+ */
 const auth = (req, res, next) => {
   try {
     const decoded = jwt.verify(getTokenFromHeaders(req), 'secret');
